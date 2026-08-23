@@ -46,6 +46,18 @@
   padding: 20px;
 }
 
+#header {
+  margin-top: -20px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header-right-section span {
+  display:block;
+  padding: 10px;
+  margin-right: 10px;
+}
 
 @media (max-width: 1024px) {
   .cards-container {
