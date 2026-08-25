@@ -8,3 +8,10 @@ body {
   padding: 40px;
   
 }
+
+html, body, #root {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents global scrolling */
+}
