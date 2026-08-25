@@ -1,6 +1,6 @@
 import { cardsData } from './components/cardsData';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const shuffleArray = (array) => {
   const shuffled = [...array];
@@ -15,8 +15,14 @@ function App() {
 
   const [cards, setCards] = useState(cardsData);
   const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
+  const [bestScore, setBestScore] = useState(() => {
+    const saved = localStorage.getItem('bestScore');
+    return saved !== null ? JSON.parse(saved) : 0;
+  });
  
+  useEffect(() => {
+    localStorage.setItem('bestScore', JSON.stringify(bestScore));
+  }, [bestScore])
 
   function handleClick(id) {
 
