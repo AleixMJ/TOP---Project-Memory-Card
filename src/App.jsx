@@ -1,5 +1,6 @@
 import { cardsData } from './components/cardsData';
 import './App.css';
+import { useState } from 'react';
 
 const shuffleArray = (array) => {
   const shuffled = [...array];
@@ -12,8 +13,44 @@ const shuffleArray = (array) => {
 
 function App() {
 
-  const cards = shuffleArray(cardsData)
+  const [cards, setCards] = useState(cardsData);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
  
+
+  function handleClick(id) {
+
+    const clickedCard = cards.find((card) => card.id === id)
+      if (clickedCard?.isClicked) {
+          alert("Game finished, you selected a card twice")
+          resetGame();
+          return;
+
+      } 
+      const newScore = score + 1;
+      const updatedCards = cards.map((card)=>
+        card.id === id? {...card, isClicked: true } : card)
+
+      if (newScore > bestScore) {
+        setBestScore(newScore);
+      }
+
+      if (newScore === cards.length){
+        alert("Congratulations, you got all cards and the max score")
+        resetGame();
+
+      } else {
+        setScore(newScore);
+        setCards(shuffleArray(updatedCards));
+    }
+  }
+  
+  function resetGame() {
+          const resetCards = cards.map((card) => ({...card, isClicked: false}));
+          setCards(shuffleArray(resetCards));
+          setScore(0);
+  }
+
   return (
     <>
       <div id='header'>
@@ -23,10 +60,10 @@ function App() {
         </div>
         <div id='header-right-section'>
           <span>
-            Score: 
+            Score: {score}
           </span>
           <span>
-            Best score: 
+            Best score: {bestScore}
           </span>
         </div>
       </div>
@@ -35,8 +72,11 @@ function App() {
 
       <div className='cards-container'>
       {cards.map((card) => (
-        <div className='card' key={card.id}>
-          <img src={card.image} alt={card.name}></img>
+        <div 
+          className='card' 
+          key={card.id}
+          onClick={() => handleClick(card.id)}>
+          <img src={card.image} alt={card.name} ></img>
           <p>{card.name}</p>
         </div>
       ))}
