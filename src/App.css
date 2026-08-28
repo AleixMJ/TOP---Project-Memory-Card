@@ -80,6 +80,23 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
+
+  /* Compact header for smaller screens */
+  #header {
+    padding: 6px 10px;
+  }
+
+  #header h1 {
+    font-size: 1.2rem; /* Reduces title size */
+    margin: 0;
+  }
+
+  #header-right-section span {
+    display: inline-block; /* Keeps scores compact instead of forcing full block height */
+    padding: 2px 6px;
+    margin-right: 4px;
+    font-size: 0.9rem; /* Shrinks score text */
+  }
 }
 
 @media (max-width: 480px) {
@@ -91,5 +108,14 @@
 
   .card:hover {
     transform: scale(1.04);
+  }
+
+  /* Extra compact header for small mobile screens */
+  #header h1 {
+    font-size: 1rem;
+  }
+
+  #header-right-section span {
+    font-size: 0.8rem;
   }
 }
