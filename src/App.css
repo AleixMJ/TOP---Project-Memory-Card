@@ -1,3 +1,5 @@
+/*App.css*/
+
 .cards-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -47,17 +49,23 @@
 }
 
 #header {
-  margin-top: -10px;
-  display:flex;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #584d78;
+  margin-top: 0;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Optional: adds subtle separation when scrolling */
 }
 
 #header-right-section span {
   display:block;
   padding: 10px;
   margin-right: 10px;
+  font-size: 1.25rem;
 }
 
 @media (max-width: 1024px) {
